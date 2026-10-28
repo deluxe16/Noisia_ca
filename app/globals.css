@@ -73,3 +73,11 @@ html, body {
     animation: fadeIn 0.35s ease-out forwards;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
