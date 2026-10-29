@@ -168,12 +168,12 @@ export default function AssetPage({ onBack, person }) {
                 - Coral Pink divider bar
                 - Artwork 2 (figures)
             ========================================================= */}
-            <div className="hidden md:flex relative w-full flex-1 items-center overflow-x-clip overflow-y-visible mt-[5vh]">
+            <div className="hidden md:flex relative w-full flex-1 items-center overflow-x-clip overflow-y-visible mt-0">
                 <div
                     ref={containerRef}
                     className="relative w-full h-full flex items-center transition-transform duration-500 ease-out"
                     style={{
-                        transform: 'translateY(4.2vh)',
+                        transform: 'translateY(-5.5vh)',
                     }}
                 >
                     {/* Wrapper maintaining aspect ratio and relative positions */}
@@ -238,12 +238,23 @@ export default function AssetPage({ onBack, person }) {
                             onMouseEnter={() => setArtwork1Hovered(true)}
                             onMouseLeave={() => setArtwork1Hovered(false)}
                         >
-                            {/* Floating Description at the top of the image (outside) - only visible on hover */}
+                            {/* Image container */}
+                            <div className="w-full h-full overflow-hidden shadow-lg">
+                                <img
+                                    src={currentPerson.artwork1?.image || currentPerson.artwork1}
+                                    alt={`${currentPerson.name} artwork 1`}
+                                    className="w-full h-full object-cover select-none pointer-events-none transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                                    draggable={false}
+                                />
+                            </div>
+
+                            {/* Floating Description at the bottom of the image (outside) - only visible on hover */}
                             <div
-                                className={`absolute bottom-full left-0 mb-3 z-30 flex flex-col gap-[3px] pointer-events-none select-none transition-all duration-300 ease-out ${artwork1Hovered
+                                className={`absolute top-full left-0 mt-3 z-30 flex flex-col gap-[3px] pointer-events-none select-none transition-all duration-300 ease-out ${
+                                    artwork1Hovered
                                         ? 'opacity-100 translate-y-0'
-                                        : 'opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0'
-                                    }`}
+                                        : 'opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0'
+                                }`}
                                 style={{
                                     fontFamily: "'Montserrat', sans-serif",
                                     color: '#FFFFFF',
@@ -307,16 +318,6 @@ export default function AssetPage({ onBack, person }) {
                                     </p>
                                 )}
                             </div>
-
-                            {/* Image container */}
-                            <div className="w-full h-full overflow-hidden shadow-lg">
-                                <img
-                                    src={currentPerson.artwork1?.image || currentPerson.artwork1}
-                                    alt={`${currentPerson.name} artwork 1`}
-                                    className="w-full h-full object-cover select-none pointer-events-none transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-                                    draggable={false}
-                                />
-                            </div>
                         </div>
 
                         {/* 4. Vivid Coral Pink Vertical Bar
@@ -350,12 +351,23 @@ export default function AssetPage({ onBack, person }) {
                             onMouseEnter={() => setArtwork2Hovered(true)}
                             onMouseLeave={() => setArtwork2Hovered(false)}
                         >
-                            {/* Floating Description at the top of the image (outside) - only visible on hover */}
+                            {/* Image container */}
+                            <div className="w-full h-full overflow-hidden shadow-lg">
+                                <img
+                                    src={currentPerson.artwork2?.image || currentPerson.artwork2}
+                                    alt={`${currentPerson.name} artwork 2`}
+                                    className="w-full h-full object-cover select-none pointer-events-none transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                                    draggable={false}
+                                />
+                            </div>
+
+                            {/* Floating Description at the bottom of the image (outside) - only visible on hover */}
                             <div
-                                className={`absolute bottom-full left-0 mb-3 z-30 flex flex-col gap-[3px] pointer-events-none select-none transition-all duration-300 ease-out ${artwork2Hovered
+                                className={`absolute top-full left-0 mt-3 z-30 flex flex-col gap-[3px] pointer-events-none select-none transition-all duration-300 ease-out ${
+                                    artwork2Hovered
                                         ? 'opacity-100 translate-y-0'
-                                        : 'opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0'
-                                    }`}
+                                        : 'opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0'
+                                }`}
                                 style={{
                                     fontFamily: "'Montserrat', sans-serif",
                                     color: '#FFFFFF',
@@ -418,16 +430,6 @@ export default function AssetPage({ onBack, person }) {
                                     </p>
                                 )}
                             </div>
-
-                            {/* Image container */}
-                            <div className="w-full h-full overflow-hidden shadow-lg">
-                                <img
-                                    src={currentPerson.artwork2?.image || currentPerson.artwork2}
-                                    alt={`${currentPerson.name} artwork 2`}
-                                    className="w-full h-full object-cover select-none pointer-events-none transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-                                    draggable={false}
-                                />
-                            </div>
                         </div>
 
                     </div>
@@ -444,8 +446,8 @@ export default function AssetPage({ onBack, person }) {
                 - Minimal < > navigation
             ========================================================= */}
             <div className="flex md:hidden flex-col flex-1 justify-center overflow-hidden w-full">
-                {/* Mobile Horizontal Artwork Flow */}
-                <div className="flex-1 flex items-end overflow-x-auto no-scrollbar gap-4 pl-6 pr-12 pb-14 pt-20 w-full">
+                {/* Mobile Horizontal Artwork Flow: artworks at the top, descriptions below */}
+                <div className="flex-1 flex items-start overflow-x-auto no-scrollbar gap-4 pl-6 pr-12 pt-6 pb-28 w-full">
                     {/* 1. David Ngachi & Grey Backdrop Blocks (Exact desktop composition) */}
                     <div
                         className="relative shrink-0 flex items-center shadow-md select-none"
@@ -483,16 +485,26 @@ export default function AssetPage({ onBack, person }) {
 
                     {/* 2. Artwork 1 */}
                     <div
-                        className="relative shrink-0 flex flex-col justify-end cursor-pointer group"
+                        className="relative shrink-0 flex flex-col justify-start cursor-pointer group"
                         style={{ width: '210px' }}
                         onClick={() => setMobileArtwork1Desc((prev) => !prev)}
                     >
-                        {/* Floating Description at top of image - toggles on click */}
+                        {/* Artwork 1 Image */}
+                        <div className="w-[210px] h-[210px] overflow-hidden shadow-lg select-none">
+                            <img
+                                src={currentPerson.artwork1?.image || currentPerson.artwork1}
+                                alt={`${currentPerson.name} artwork 1`}
+                                className="w-full h-full object-cover select-none pointer-events-none active:scale-[0.98] transition-transform duration-200"
+                                draggable={false}
+                            />
+                        </div>
+
+                        {/* Floating Description below the image - toggles on click */}
                         <div
-                            className={`absolute bottom-full left-0 mb-2.5 w-[210px] z-20 flex flex-col gap-[2px] select-none transition-all duration-300 ease-out ${
+                            className={`absolute top-full left-0 mt-2.5 w-[210px] z-20 flex flex-col gap-[2px] select-none transition-all duration-300 ease-out ${
                                 mobileArtwork1Desc
                                     ? 'opacity-100 translate-y-0 pointer-events-auto'
-                                    : 'opacity-0 translate-y-2 pointer-events-none'
+                                    : 'opacity-0 -translate-y-2 pointer-events-none'
                             }`}
                             style={{
                                 fontFamily: "'Montserrat', sans-serif",
@@ -530,20 +542,10 @@ export default function AssetPage({ onBack, person }) {
                                 {currentPerson.artwork1?.status || 'Acquired'}
                             </p>
                         </div>
-
-                        {/* Artwork 1 Image */}
-                        <div className="w-[210px] h-[210px] overflow-hidden shadow-lg select-none">
-                            <img
-                                src={currentPerson.artwork1?.image || currentPerson.artwork1}
-                                alt={`${currentPerson.name} artwork 1`}
-                                className="w-full h-full object-cover select-none pointer-events-none active:scale-[0.98] transition-transform duration-200"
-                                draggable={false}
-                            />
-                        </div>
                     </div>
 
                     {/* 3. Coral Pink Divider with < > in between the two artworks (exactly matching desktop) */}
-                    <div className="shrink-0 flex flex-col items-center justify-end relative" style={{ height: '210px' }}>
+                    <div className="shrink-0 flex flex-col items-center justify-start relative" style={{ height: '210px' }}>
                         {/* Coral Pink Vertical Line */}
                         <div
                             className="w-[3px] bg-[#FD5178] pointer-events-none"
@@ -601,16 +603,26 @@ export default function AssetPage({ onBack, person }) {
 
                     {/* 4. Artwork 2 */}
                     <div
-                        className="relative shrink-0 flex flex-col justify-end cursor-pointer group"
+                        className="relative shrink-0 flex flex-col justify-start cursor-pointer group"
                         style={{ width: '210px' }}
                         onClick={() => setMobileArtwork2Desc((prev) => !prev)}
                     >
-                        {/* Floating Description at top of image - toggles on click */}
+                        {/* Artwork 2 Image */}
+                        <div className="w-[210px] h-[210px] overflow-hidden shadow-lg select-none">
+                            <img
+                                src={currentPerson.artwork2?.image || currentPerson.artwork2}
+                                alt={`${currentPerson.name} artwork 2`}
+                                className="w-full h-full object-cover select-none pointer-events-none active:scale-[0.98] transition-transform duration-200"
+                                draggable={false}
+                            />
+                        </div>
+
+                        {/* Floating Description below the image - toggles on click */}
                         <div
-                            className={`absolute bottom-full left-0 mb-2.5 w-[210px] z-20 flex flex-col gap-[2px] select-none transition-all duration-300 ease-out ${
+                            className={`absolute top-full left-0 mt-2.5 w-[210px] z-20 flex flex-col gap-[2px] select-none transition-all duration-300 ease-out ${
                                 mobileArtwork2Desc
                                     ? 'opacity-100 translate-y-0 pointer-events-auto'
-                                    : 'opacity-0 translate-y-2 pointer-events-none'
+                                    : 'opacity-0 -translate-y-2 pointer-events-none'
                             }`}
                             style={{
                                 fontFamily: "'Montserrat', sans-serif",
@@ -647,16 +659,6 @@ export default function AssetPage({ onBack, person }) {
                             >
                                 {currentPerson.artwork2?.status || 'Reserved'}
                             </p>
-                        </div>
-
-                        {/* Artwork 2 Image */}
-                        <div className="w-[210px] h-[210px] overflow-hidden shadow-lg select-none">
-                            <img
-                                src={currentPerson.artwork2?.image || currentPerson.artwork2}
-                                alt={`${currentPerson.name} artwork 2`}
-                                className="w-full h-full object-cover select-none pointer-events-none active:scale-[0.98] transition-transform duration-200"
-                                draggable={false}
-                            />
                         </div>
                     </div>
                 </div>
